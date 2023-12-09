@@ -4,91 +4,37 @@ onMounted(() => {
   console.log('Nuxt startup !!!')
 })
 
-interface RandomUser {
-  results: Result[];
-  info: Info;
-}
-
-interface Info {
-  seed: string;
-  results: number;
-  page: number;
-  version: string;
-}
-
-interface Result {
-  gender: string;
-  name: Name;
-  location: Location;
-  email: string;
-  login: Login;
-  dob: Dob;
-  registered: Dob;
-  phone: string;
-  cell: string;
-  id: ID;
-  picture: Picture;
-  nat: string;
-}
-
-interface Dob {
-  date: Date;
-  age: number;
-}
-
-interface ID {
+const { data }: { data: User[] } = await useFetch('https://jsonplaceholder.typicode.com/users')
+interface User {
+  id: number;
   name: string;
-  value: string;
-}
-
-interface Location {
-  street: Street;
-  city: string;
-  state: string;
-  country: string;
-  postcode: number;
-  coordinates: Coordinates;
-  timezone: Timezone;
-}
-
-interface Coordinates {
-  latitude: string;
-  longitude: string;
-}
-
-interface Street {
-  number: number;
-  name: string;
-}
-
-interface Timezone {
-  offset: string;
-  description: string;
-}
-
-interface Login {
-  uuid: string;
   username: string;
-  password: string;
-  salt: string;
-  md5: string;
-  sha1: string;
-  sha256: string;
+  email: string;
+  address: Address;
+  phone: string;
+  website: string;
+  company: Company;
 }
 
-interface Name {
-  title: string;
-  first: string;
-  last: string;
+interface Address {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: Geo;
 }
 
-interface Picture {
-  large: string;
-  medium: string;
-  thumbnail: string;
+interface Geo {
+  lat: string;
+  lng: string;
 }
 
-const { data } = await useFetch('https://randomuser.me/api')
+interface Company {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+}
+
 
 useHead({
   title: 'Nuxt HomePage',
@@ -114,14 +60,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <!-- <NuxtWelcome /> -->
-  <!-- <Title>Home</Title> -->
-  <!-- <ul>
-    <li v-for="result in results" :key="result.id">
-      {{ result.name }}
-    </li>
-  </ul> -->
-  {{ data }}
+  <h2>List Render</h2>
+  <li v-for="item in data" :key="item.id">
+    {{ item.name }} |
+    {{ item.username }}
+  </li>
   <div>
     <NuxtLink to="/about">
       About
