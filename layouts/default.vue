@@ -1,7 +1,5 @@
 <template>
-  <div class="underline font-bold">
-    <AppHeader />
+  <div class="bg-white text-black dark:bg-black dark:text-white min-h-screen">
     <slot />
-    <AppFooter />
   </div>
 </template>
