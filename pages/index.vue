@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { User } from '~/types/user'
 
+const counter = useState('count', () => Math.random() * 100)
+
 onMounted(() => {
   console.log('Nuxt startup !!!')
 })
@@ -37,6 +39,9 @@ useSeoMeta({
     {{ item.name }} |
     {{ item.username }}
   </li>
+  {{ counter }}
+  <button @click="counter++">++</button>
+  <button @click="counter--">--</button>
   <div>
     <NuxtLink to="/about">
       About
