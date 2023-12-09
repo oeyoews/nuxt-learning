@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { User } from '~/types/user'
 
+definePageMeta({
+  layout: 'article'
+})
 const counter = useState('count', () => Math.random() * 100)
 
 onMounted(() => {
   console.log('Nuxt startup !!!')
 })
+
+// TODO:
+// const hello = await $fetch('/api/hello')
 
 // @ts-ignore
 const { data }: { data: User[] } = await useFetch('https://jsonplaceholder.typicode.com/users')

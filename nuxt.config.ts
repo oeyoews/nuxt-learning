@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     // pageTransition: { name: 'fade', mode: 'out-in' },
     // layoutTransition: { name: 'layout', mode: 'out-in' },
   },
+  modules: ['@nuxt/content'],
   vite: {
     esbuild: {
       drop: ['debugger'],
